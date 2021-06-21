@@ -6,7 +6,7 @@ namespace Entities.Models
 {
     public class PasswordsRole
     {
-        public string Identifier { get; set; }
+        public string Id { get; set; }
 
         public string PasswordRecordId { get; set; }
         public PasswordRecord PasswordRecord { get; set; }
