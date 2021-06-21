@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities.Models
 {
-    class Role : IdentityRole
+    public class Role : IdentityRole
     {
         public string Description { get; set; }
     }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entities.Models
 {
-    class PasswordsRole
+    public class PasswordsRole
     {
         public string Identifier { get; set; }
 
