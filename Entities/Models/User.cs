@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities.Models
 {
-    class User : IdentityUser
+    public class User : IdentityUser
     {
         public string Id { get; set; }
         public string FirstName { get; set; }

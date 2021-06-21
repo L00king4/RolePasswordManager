@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Entities
 {
-    class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
             base(options) { }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entities.Models
 {
-    class PasswordRecord
+    public class PasswordRecord
     {
         public string Id { get; set; }
         public string EncryptionString { get; set; }

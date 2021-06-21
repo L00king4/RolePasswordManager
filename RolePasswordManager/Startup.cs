@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,9 +15,11 @@ namespace RolePasswordManager
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _enviroment;
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            _enviroment = environment;
         }
 
         public IConfiguration Configuration { get; }
@@ -24,6 +28,11 @@ namespace RolePasswordManager
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            var connection = Configuration.GetConnectionString("Postgress");
+            services.AddDbContext<ApplicationDbContext>(optionsAction =>
+            {
+                optionsAction.UseNpgsql(connection);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
