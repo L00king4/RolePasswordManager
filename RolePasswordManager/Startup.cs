@@ -42,6 +42,7 @@ namespace RolePasswordManager
             services.AddIdentity<User, Role>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddSwaggerGen(c=>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "RolePasswordManager", Version = "1" });
@@ -64,17 +65,20 @@ namespace RolePasswordManager
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "lol v1"));
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "/{controller=Home}/{action=Index}");
-                endpoints.MapRazorPages();
+                    pattern: "/{controller=Home}/{action=Index}/{id?}"
+                );
+                //endpoints.MapRazorPages();
             });
         }
     }

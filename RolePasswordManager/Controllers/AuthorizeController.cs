@@ -16,7 +16,7 @@ namespace RolePasswordManager.Controllers
         {
             _registerService = registerService;
         }
-
+       
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
