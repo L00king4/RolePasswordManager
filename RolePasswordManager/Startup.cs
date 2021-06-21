@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RolePasswordManager.Profiles;
+using RolePasswordManager.Services.RegisterService;
 
 namespace RolePasswordManager
 {
@@ -29,7 +31,9 @@ namespace RolePasswordManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(DefaultProfile));
             services.AddRazorPages();
+            services.AddSingleton<IRegisterService, RegisterService>();
             var connection = Configuration.GetConnectionString("Postgress");
             services.AddDbContext<ApplicationDbContext>(optionsAction =>
             {
@@ -63,6 +67,9 @@ namespace RolePasswordManager
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "/{controller=Home}/{action=Index}");
                 endpoints.MapRazorPages();
             });
         }

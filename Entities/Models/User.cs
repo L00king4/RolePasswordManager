@@ -12,7 +12,7 @@ namespace Entities.Models
         public string LastName { get; set; }
         public string IdentityRoleId { get; set; }
         public IdentityRole IdentityRole { get; set; }
-        
+        public bool IsActive { get; set; }
         public byte[] Avatar { get; set; }
         public string GetAvatar => (Avatar is null) ? "" : $"data:image/jpeg;base64,{Convert.ToBase64String(Avatar)}";
 
